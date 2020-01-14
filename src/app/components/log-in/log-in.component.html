@@ -1,0 +1,39 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log In</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="example-form">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" formControlName="userName" >
+          <mat-error *ngIf="authForm.controls.userName.invalid">This is required Field!!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="email" >
+          <mat-error *ngIf="authForm.controls.email.invalid"> This is required Field!! </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password"  type='password' formControlName="password">
+          <mat-error *ngIf="authForm.controls.password.invalid"> This is required Field!! </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a role...</mat-label>
+          <mat-select [(value)]="selected" formControlName="userType">
+            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block" [disabled]="this.authForm.touched && this.authForm.invalid">Login</button>
+
+    </form>
+  </mat-card>
+</div>

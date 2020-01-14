@@ -1,0 +1,104 @@
+<app-header></app-header>
+<!-- <mat-card></mat-card> -->
+
+<div class="row" style=" margin: 0;padding-top: 10px;margin-top: 80px;">
+  <div class="col-md-5">
+      <mat-card>
+          <h3>Add New User</h3>
+          <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+
+              <mat-form-field floatLabel="never" class="form-element">
+                <input type="text" matInput placeholder="Username" formControlName="username">
+                <mat-error *ngIf="formGroup.controls['username'].invalid">
+                  {{getError('user')}}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field floatLabel="never" class="form-element">
+                  <input type="text" matInput placeholder="Username" formControlName="username">
+                  <mat-error *ngIf="formGroup.controls['username'].invalid">
+                    {{getError('user')}}
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field floatLabel="never" class="form-element">
+                  <input type="text" matInput placeholder="Username" formControlName="username">
+                  <mat-error *ngIf="formGroup.controls['username'].invalid">
+                    {{getError('user')}}
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field floatLabel="never" class="form-element">
+                  <input type="text" matInput placeholder="Username" formControlName="username">
+                  <mat-error *ngIf="formGroup.controls['username'].invalid">
+                    {{getError('user')}}
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-element">
+                  <mat-label>Select an option</mat-label>
+                  <mat-select [(value)]="selected">
+                    <mat-option>None</mat-option>
+                    <mat-option value="option1">Option 1</mat-option>
+                    <mat-option value="option2">Option 2</mat-option>
+                    <mat-option value="option3">Option 3</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+
+
+              <div class="form-element">
+                <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit Form</button>
+              </div>
+
+            </form>
+      </mat-card>
+  </div>
+  <div class="col-md-7">
+          <h4 class="list-label"> User Listing</h4>
+      <mat-card class="second-part">
+              <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Search by Name" type="text" [(ngModel)]="userFilter.name">
+              </mat-form-field>
+
+                  <mat-accordion class="example-headers-align" *ngFor="let user of usersList | filterBy: userFilter">
+                          <mat-expansion-panel  >
+                            <mat-expansion-panel-header>
+
+                              <mat-panel-title>
+                                      <mat-icon matListIcon aria-hidden="false" aria-label="Example home icon" color="accent" class="icon-verify">verified_user</mat-icon> <span class="user-name">{{user.name}}</span>
+                              </mat-panel-title>
+                              <mat-panel-title>
+                                      {{user.name}}
+                                    </mat-panel-title>
+                              <mat-panel-description>
+                                {{user.email}}
+                              </mat-panel-description>
+                              <mat-panel-description>
+                                      {{user.phone}}
+                              </mat-panel-description>
+
+                            </mat-expansion-panel-header>
+                            <mat-list>
+                                  <mat-list-item *ngFor="let label of userLabel">
+                                      <mat-icon matListIcon aria-hidden="false" aria-label="Example home icon">{{label.icon}}</mat-icon>
+                                   <div class="d-flex">
+                                      <div class="label">
+                                          {{label.label}} :
+                                      </div>
+                                      <div class="value">
+                                          {{user.name}}
+                                      </div>
+                                   </div>
+                                  </mat-list-item>
+                                </mat-list>
+
+                            <mat-action-row>
+
+
+                              <button mat-raised-button  color="accent" (click)="prevStep()">Delete</button>
+                              <button mat-raised-button color="primary" (click)="nextStep()">Mark Varified</button>
+                            </mat-action-row>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+
+
+      </mat-card>
+  </div>
+</div>
