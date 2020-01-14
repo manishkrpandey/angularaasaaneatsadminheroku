@@ -8,36 +8,30 @@
           <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
 
               <mat-form-field floatLabel="never" class="form-element">
-                <input type="text" matInput placeholder="Username" formControlName="username">
-                <mat-error *ngIf="formGroup.controls['username'].invalid">
+                <input type="text" matInput placeholder="Full Name" formControlName="userName">
+                <mat-error *ngIf="formGroup.controls['userName'].invalid">
                   {{getError('user')}}
                 </mat-error>
               </mat-form-field>
               <mat-form-field floatLabel="never" class="form-element">
-                  <input type="text" matInput placeholder="Username" formControlName="username">
-                  <mat-error *ngIf="formGroup.controls['username'].invalid">
+                  <input type="text" matInput placeholder="Mobile Number" formControlName="mobileNumber">
+                  <mat-error *ngIf="formGroup.controls['mobileNumber'].invalid">
                     {{getError('user')}}
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field floatLabel="never" class="form-element">
-                  <input type="text" matInput placeholder="Username" formControlName="username">
-                  <mat-error *ngIf="formGroup.controls['username'].invalid">
+                  <input type="text" matInput placeholder="email" formControlName="email">
+                  <mat-error *ngIf="formGroup.controls['email'].invalid">
                     {{getError('user')}}
                   </mat-error>
                 </mat-form-field>
-                <mat-form-field floatLabel="never" class="form-element">
-                  <input type="text" matInput placeholder="Username" formControlName="username">
-                  <mat-error *ngIf="formGroup.controls['username'].invalid">
-                    {{getError('user')}}
-                  </mat-error>
-                </mat-form-field>
+
                 <mat-form-field class="form-element">
-                  <mat-label>Select an option</mat-label>
-                  <mat-select [(value)]="selected">
-                    <mat-option>None</mat-option>
-                    <mat-option value="option1">Option 1</mat-option>
-                    <mat-option value="option2">Option 2</mat-option>
-                    <mat-option value="option3">Option 3</mat-option>
+                  <mat-label>Select Employee Type</mat-label>
+                  <mat-select [(value)]="selected" formControlName="employeeType">
+                    <mat-option value="agent">Agent</mat-option>
+                    <mat-option value="dboy">Delivery boy</mat-option>
+                    <mat-option value="support">Support</mat-option>
                   </mat-select>
                 </mat-form-field>
 

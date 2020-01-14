@@ -265,23 +265,31 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      userName: ['', Validators.required],
+      mobileNumber: ['', Validators.required],
+      employeeType: ['', Validators.required],
+      email: ['', Validators.required]
+
     });
   }
 
   getError(el) {
     switch (el) {
       case 'user':
-        if (this.formGroup.get('username').hasError('required')) {
+        if (this.formGroup.get('userName').hasError('required')) {
           return 'Username required';
         }
         break;
       case 'pass':
-        if (this.formGroup.get('password').hasError('required')) {
-          return 'Password required';
+        if (this.formGroup.get('mobileNumber').hasError('required')) {
+          return 'Mobile Number required';
         }
         break;
+        case 'email':
+          if (this.formGroup.get('email').hasError('required')) {
+            return 'Email required';
+          }
+          break;
       default:
         return '';
     }
