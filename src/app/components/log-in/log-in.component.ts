@@ -3,6 +3,7 @@ import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
+import { AuthTokenService } from 'src/app/services/authtoken.service';
 
 
 @Component({
@@ -20,8 +21,12 @@ export class LogInComponent implements OnInit {
     user_name: '',
     password: ''
 };
+userState: any = {
+  name: '',
+  token: ''
+};
 
-  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService, private tokenService: AuthTokenService) {
     this.authForm = this.fb.group({
       userName: ['', Validators.required],
       email: [null, [Validators.required, Validators.email]],
@@ -36,8 +41,15 @@ export class LogInComponent implements OnInit {
       this.loginRequestObj.user_name = this.authForm.get('userName').value;
       this.loginRequestObj.password = this.authForm.get('password').value;
       this.loginService.loginAction(this.loginRequestObj).subscribe(data => {
-        if (data && data.status ) {
-          this.router.navigate(['/dashboard']);
+        if (data && data.status && data.data && data.data.remember_token ) {
+          if (data.data.remember_token) {
+            this.userState.name = this.loginRequestObj.user_name;
+            this.userState.token = data.data.remember_token;
+            this.tokenService.setToken(this.userState);
+            this.router.navigate(['/dashboard']);
+          } else {
+            localStorage.setItem('user', null);
+          }
         }
       });
     }

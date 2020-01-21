@@ -14,26 +14,26 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /* Angular Flex Layout */
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
 /* Components */
 import { HttpClientModule } from '@angular/common/http';
 
 import { LogInComponent } from './components/log-in/log-in.component';
-import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginService } from './services/login/login.service';
+
 import { ApiService } from './services/api.service';
+import { DashboardService } from './services/dasboard/dashboard.service';
+import { AuthTokenService } from './services/authtoken.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
-    RegisterComponent,
-    RegisterComponent,
     LogInComponent,
     DashboardComponent,
     HeaderComponent
@@ -49,7 +49,7 @@ import { ApiService } from './services/api.service';
     HttpClientModule,
     FilterPipeModule
   ],
-  providers: [LoginService,ApiService],
+  providers: [LoginService, ApiService, DashboardService,AuthTokenService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Observable }   from 'rxjs';
 import {MatIconRegistry} from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DashboardService } from 'src/app/services/dasboard/dashboard.service';
+import { AuthTokenService } from 'src/app/services/authtoken.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,15 +13,42 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  userDetailsObj = [];
+  addNewUserRequestObject = {
+    command: 'insert',
+    remember_token: 'new_token',
+    mobile_number: '981103',
+    employee_type_id: '1',
+    employee_name: 'jamwant yadav',
+    email_id: 'jamwant@gmail.com'
+};
+authToken: any = '';
+getAllUserDetailsRequestObject =  {
+  command: 'retrieve',
+  remember_token: this.authToken ? this.authToken : '',
+};
 
-  constructor(private formBuilder: FormBuilder, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { }
+
+  constructor(
+    private formBuilder: FormBuilder,
+    conRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private dashboardService: DashboardService,
+    private tokenService: AuthTokenService
+    ) {
+      this.authToken = this.tokenService.getToken();
+      this.getAllUserDetailsRequestObject.remember_token = this.addNewUserRequestObject.remember_token = this.authToken;
+
+     }
   formGroup: FormGroup;
   selected = 'option2';
-  userFilter: any = { name: '' };
-  userLabel = [{label: 'Name', icon: 'face'},
-   {label: 'Contact Number', icon: 'contact_phone'},
-   {label: 'Area', icon: 'house'}, {label: 'Email Add', icon: 'email'},
-   {label: 'Team', icon: 'supervised_user_circle'}];
+  userFilter: any = { employee_name: '' };
+  userLabel = [
+    {label: 'Name', icon: 'face', key: 'employee_name'},
+   {label: 'Contact Number', icon: 'contact_phone', key: 'mobile_number'},
+   {label: 'Area', icon: 'house', key: ''},
+   {label: 'Email Add', icon: 'email', key: 'email_id'},
+   {label: 'Team', icon: 'supervised_user_circle', key: ''}];
   usersList = [
     {
       id: 1,
@@ -271,6 +301,33 @@ export class DashboardComponent implements OnInit {
       email: ['', Validators.required]
 
     });
+    this.getAllUserDetails();
+  }
+
+  AddNewuser() {
+    if (this.formGroup.valid) {
+      this.addNewUserRequestObject.email_id = this.formGroup.get('email').value;
+      this.addNewUserRequestObject.employee_type_id = this.formGroup.get('employeeType').value;
+      this.addNewUserRequestObject.employee_name = this.formGroup.get('userName').value;
+      this.addNewUserRequestObject.mobile_number = this.formGroup.get('mobileNumber').value;
+      this.dashboardService.addNewUser(this.addNewUserRequestObject).subscribe(data => {
+        if (data && data.status ) {
+          this.getAllUserDetails();
+        }
+      });
+    }
+  }
+
+  getAllUserDetails() {
+    this.dashboardService.getAllUserDetails(this.getAllUserDetailsRequestObject).subscribe(data => {
+      if (data && data.status) {
+        this.userDetailsObj = data.data;
+      }
+    });
+  }
+
+  getColor(status) {
+    console.log(status);
   }
 
   getError(el) {

@@ -117,3 +117,9 @@ body {
   border-radius: 0;
   margin-bottom: 5px;
 }
+.mat-accordion>.mat-expansion-panel-spacing:last-child, .mat-accordion>:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+  margin-bottom: 10px;
+}
+.mat-expanded{
+  margin-bottom: 10px!important;
+}

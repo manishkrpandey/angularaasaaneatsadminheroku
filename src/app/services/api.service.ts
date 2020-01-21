@@ -13,17 +13,14 @@ export class ApiService {
   }
 
   put(url: string, body: object = {}): Observable<any> {
-    return this.http.put(`${url}`, JSON.stringify(body));
+    return this.http.put(`${url}`, body);
   }
 
   post(url: string, body: object = {}): Observable<any> {
-    return this.http.post(`${url}`, JSON.stringify(body));
+    return this.http.post(`${url}`, body);
   }
 
   delete(url: string, body: object = {}): Observable<any> {
     return this.http.request('delete', url, { body });
-    // return this.http.delete(
-    //   `${url}`,
-    // );
   }
 }
