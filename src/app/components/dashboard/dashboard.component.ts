@@ -99,7 +99,7 @@ getAllUserDetailsRequestObject =  {
       if (data && data.status === 'success') {
         this.userDetailsObj = data.data;
       } else {
-        this.router.navigate(['\login']);
+        // this.router.navigate(['\login']);
       }
     });
   }

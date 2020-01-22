@@ -3,190 +3,177 @@
 <div class="container">
   <div class="row" style=" margin: 0;padding-top: 10px;margin-top: 80px;">
     <div class="col-md-5">
-        <mat-card>
-            <h3 > Add New User</h3>
-            <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+      <mat-card>
+        <h3>Add New User</h3>
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+          <mat-form-field floatLabel="never" class="form-element">
+            <input type="text" matInput placeholder="Full Name" formControlName="userName" />
+            <mat-error *ngIf="formGroup.controls['userName'].invalid">
+              {{ getError("user") }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field floatLabel="never" class="form-element">
+            <input type="text" matInput placeholder="Mobile Number" formControlName="mobileNumber" />
+            <mat-error *ngIf="formGroup.controls['mobileNumber'].invalid">
+              {{ getError("user") }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field floatLabel="never" class="form-element">
+            <input type="text" matInput placeholder="email" formControlName="email" />
+            <mat-error *ngIf="formGroup.controls['email'].invalid">
+              {{ getError("user") }}
+            </mat-error>
+          </mat-form-field>
 
-                <mat-form-field floatLabel="never" class="form-element">
-                  <input type="text" matInput placeholder="Full Name" formControlName="userName">
-                  <mat-error *ngIf="formGroup.controls['userName'].invalid">
-                    {{getError('user')}}
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field floatLabel="never" class="form-element">
-                    <input type="text" matInput placeholder="Mobile Number" formControlName="mobileNumber">
-                    <mat-error *ngIf="formGroup.controls['mobileNumber'].invalid">
-                      {{getError('user')}}
-                    </mat-error>
-                  </mat-form-field>
-                  <mat-form-field floatLabel="never" class="form-element">
-                    <input type="text" matInput placeholder="email" formControlName="email">
-                    <mat-error *ngIf="formGroup.controls['email'].invalid">
-                      {{getError('user')}}
-                    </mat-error>
-                  </mat-form-field>
+          <mat-form-field class="form-element">
+            <mat-label>Select Employee Type</mat-label>
+            <mat-select [(value)]="selected" formControlName="employeeType">
+              <mat-option value="1">Marketting Agent</mat-option>
+              <mat-option value="2">Delivery boy</mat-option>
+              <mat-option value="3">Support Engineer</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-                  <mat-form-field class="form-element">
-                    <mat-label>Select Employee Type</mat-label>
-                    <mat-select [(value)]="selected" formControlName="employeeType">
-                      <mat-option value="1">Marketting Agent</mat-option>
-                      <mat-option value="2">Delivery boy</mat-option>
-                      <mat-option value="3">Support Engineer</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-
-
-
-                <div class="form-element">
-                  <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid" (click)="AddNewuser()">Submit Form</button>
-                </div>
-
-              </form>
-        </mat-card>
+          <div class="form-element">
+            <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid"
+              (click)="AddNewuser()">
+              Submit Form
+            </button>
+          </div>
+        </form>
+      </mat-card>
     </div>
     <div class="col-md-7">
-      <div class="d-flex card-container">
+      <div class="card-container">
         <mat-card class="example-card one">
           <mat-card-header>
-
             <mat-card-title>Marketting Agent</mat-card-title>
-
           </mat-card-header>
           <mat-card-content>
-            <p  class="title">
-             Total : 50
+            <p class="title">
+              Total : 50
             </p>
-            <p  class="title">
+            <p class="title">
               Verified : 50
-             </p>
-             <p  class="title">
+            </p>
+            <p class="title">
               Unverified : 50
-             </p>
+            </p>
           </mat-card-content>
-
         </mat-card>
         <mat-card class="example-card two">
           <mat-card-header>
-
             <mat-card-title> Delivery Boy</mat-card-title>
           </mat-card-header>
 
           <mat-card-content>
             <mat-card-content>
-              <p  class="title">
-               Total : 50
+              <p class="title">
+                Total : 50
               </p>
-              <p  class="title">
+              <p class="title">
                 Verified : 50
-               </p>
-               <p  class="title">
+              </p>
+              <p class="title">
                 Unverified : 50
-               </p>
+              </p>
             </mat-card-content>
           </mat-card-content>
-
         </mat-card>
       </div>
-      <div class="d-flex">
+      <!-- <div class="d-flex">
         <mat-card class="example-card three">
           <mat-card-header>
-
             <mat-card-title>New User</mat-card-title>
-
           </mat-card-header>
           <mat-card-content>
             <mat-card-content>
               <p class="title">
-               Total : 50
+                Total : 50
               </p>
-              <p  class="title">
+              <p class="title">
                 Verified : 50
-               </p>
-               <p  class="title">
+              </p>
+              <p class="title">
                 Unverified : 50
-               </p>
+              </p>
             </mat-card-content>
           </mat-card-content>
-
         </mat-card>
         <mat-card class="example-card four">
           <mat-card-header>
-
             <mat-card-title>Restaurants</mat-card-title>
-
           </mat-card-header>
 
           <mat-card-content>
             <mat-card-content>
-              <p  class="title">
-               Total : 50
+              <p class="title">
+                Total : 50
               </p>
-              <p  class="title">
+              <p class="title">
                 Verified : 50
-               </p>
-               <p  class="title">
+              </p>
+              <p class="title">
                 Unverified : 50
-               </p>
+              </p>
             </mat-card-content>
           </mat-card-content>
-
         </mat-card>
-      </div>
+      </div> -->
     </div>
-
   </div>
   <div class="row">
     <div class="col-md-12">
-      <h4 class="list-label p20"> User Listing</h4>
+      <h4 class="list-label p20">User Listing</h4>
       <mat-card class="second-part">
-              <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Search by Name" type="text" [(ngModel)]="userFilter.employee_name">
-              </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Search by Name" type="text" [(ngModel)]="userFilter.employee_name" />
+        </mat-form-field>
 
-                  <mat-accordion class="example-headers-align" *ngFor="let user of userDetailsObj">
-                          <mat-expansion-panel  >
-                            <mat-expansion-panel-header>
+        <mat-accordion class="example-headers-align" *ngFor="let user of userDetailsObj">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon matListIcon aria-hidden="false" aria-label="Example home icon"
+                  [color]="user.is_signed_up ? 'accent' : 'primary'" class="icon-verify">verified_user</mat-icon>
+                <span class="user-name">{{ user.name }}</span>
+              </mat-panel-title>
+              <mat-panel-title>
+                {{ user.employee_name }}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{ user.mobile_number }}
+              </mat-panel-description>
+              <mat-panel-description>
+                {{ user.email_id }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item *ngFor="let label of userLabel">
+                <mat-icon matListIcon aria-hidden="false" aria-label="Example home icon">{{ label.icon }}</mat-icon>
+                <div class="d-flex">
+                  <div class="label">{{ label.label }} :</div>
+                  <div class="value">
+                    {{ user[label.key] }}
+                  </div>
+                </div>
+              </mat-list-item>
+            </mat-list>
 
-                              <mat-panel-title>
-                                      <mat-icon matListIcon aria-hidden="false" aria-label="Example home icon" [color]="user.is_signed_up? 'accent':'primary'" class="icon-verify">verified_user</mat-icon> <span class="user-name">{{user.name}}</span>
-                              </mat-panel-title>
-                              <mat-panel-title>
-                                      {{user.employee_name}}
-                                    </mat-panel-title>
-                              <mat-panel-description>
-                                {{user.mobile_number}}
-                              </mat-panel-description>
-                              <mat-panel-description>
-                                      {{user.email_id}}
-                              </mat-panel-description>
-
-                            </mat-expansion-panel-header>
-                            <mat-list>
-                                  <mat-list-item *ngFor="let label of userLabel">
-                                      <mat-icon matListIcon aria-hidden="false" aria-label="Example home icon">{{label.icon}}</mat-icon>
-                                   <div class="d-flex">
-                                      <div class="label">
-                                          {{label.label}} :
-                                      </div>
-                                      <div class="value">
-                                          {{user[label.key]}}
-                                      </div>
-                                   </div>
-                                  </mat-list-item>
-                                </mat-list>
-
-                            <mat-action-row>
-
-
-                              <button mat-raised-button  color="accent" class="mr10" (click)="prevStep()">Delete</button>
-                              <button mat-raised-button color="primary" (click)="nextStep()">Mark Varified</button>
-                            </mat-action-row>
-                          </mat-expansion-panel>
-                        </mat-accordion>
-
-
+            <mat-action-row>
+              <button mat-raised-button color="accent" class="mr10" (click)="prevStep()">
+                Delete
+              </button>
+              <button mat-raised-button color="primary" (click)="nextStep()">
+                Mark Varified
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
       </mat-card>
     </div>
   </div>
-
 </div>
+<footer class="footer">
+  <p>Copyright Asaan Admin @ 2020</p>
+</footer>
