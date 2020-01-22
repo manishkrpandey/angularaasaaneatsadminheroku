@@ -4,6 +4,7 @@ import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 import { AuthTokenService } from 'src/app/services/authtoken.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -26,7 +27,12 @@ userState: any = {
   token: ''
 };
 
-  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService, private tokenService: AuthTokenService) {
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private loginService: LoginService,
+              private tokenService: AuthTokenService,
+              private snackBar: MatSnackBar
+      ) {
     this.authForm = this.fb.group({
       userName: ['', Validators.required],
       email: [null, [Validators.required, Validators.email]],
@@ -37,7 +43,6 @@ userState: any = {
 
   submitForm() {
     if (this.authForm.invalid === false) {
-      console.log('submitted');
       this.loginRequestObj.user_name = this.authForm.get('userName').value;
       this.loginRequestObj.password = this.authForm.get('password').value;
       this.loginService.loginAction(this.loginRequestObj).subscribe(data => {
@@ -48,8 +53,13 @@ userState: any = {
             this.tokenService.setToken(this.userState);
             this.router.navigate(['/dashboard']);
           } else {
+
             localStorage.setItem('user', null);
           }
+        } else {
+          this.snackBar.open('Username/Password Error', 'Ok', {
+            duration: 5000,
+          });
         }
       });
     }

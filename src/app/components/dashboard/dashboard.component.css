@@ -61,3 +61,27 @@ margin-right: 12px;
 .p20{
   padding: 20px;
 }
+.example-card {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  min-width: 240px;
+
+}
+.title{
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+  .one{
+    background-color: #ff4081;
+  }
+  .two{
+    background-color: teal;
+  }
+  .three{
+    background-color: blueviolet;
+  }
+  .four{
+    background-color: tomato;
+  }
