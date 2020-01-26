@@ -3,16 +3,16 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError, retryWhen } from 'rxjs/operators';
 import { ApiService, } from 'src/app/services/api.service';
-import { environment } from './../../../environments/environment';
+import { environment  as env} from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardService {
   loading = false;
-  loginUrl = 'http://www.dealbytes.co.in/admin/registeremployee';
-  getAllUserDetailsUrl = 'http://www.dealbytes.co.in/admin/registeremployee';
-  getEmployeeUrl = 'http://www.dealbytes.co.in/employee/retrieve?id=1';
+  loginUrl = env.BASE_URL + '/admin/registeremployee';
+  getAllUserDetailsUrl = env.BASE_URL + '/admin/registeremployee';
+  getEmployeeUrl = env.BASE_URL + '/employee/retrieve?id=1';
 
   constructor(private api: ApiService) {
 

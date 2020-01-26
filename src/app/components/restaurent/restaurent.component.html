@@ -4,10 +4,10 @@
   <div class="row" style=" margin: 0;padding-top: 10px;margin-top: 80px;">
     <div class="col-md-5">
       <mat-card>
-        <h3>Add New User</h3>
+        <h3>Add New Restaurent</h3>
         <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
           <mat-form-field floatLabel="never" class="form-element">
-            <input type="text" matInput placeholder="Full Name" formControlName="userName" />
+            <input type="text" matInput placeholder="Restaurent Name" formControlName="userName" />
             <mat-error *ngIf="formGroup.controls['userName'].invalid">
               {{ getError("user") }}
             </mat-error>
@@ -26,11 +26,11 @@
           </mat-form-field>
 
           <mat-form-field class="form-element">
-            <mat-label>Select Employee Type</mat-label>
+            <mat-label>Select Restaurent Type</mat-label>
             <mat-select [(value)]="selected" formControlName="employeeType">
-              <mat-option value="1">Marketting Agent</mat-option>
-              <mat-option value="2">Delivery boy</mat-option>
-              <mat-option value="3">Support Engineer</mat-option>
+              <mat-option value="1">Vegetarian</mat-option>
+              <mat-option value="2">Non-Vegetarian</mat-option>
+              <mat-option value="3">Both Veg / Non-Veg</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -45,25 +45,10 @@
     </div>
     <div class="col-md-7">
       <div class="card-container">
-        <mat-card class="example-card one">
-          <mat-card-header>
-            <mat-card-title>Marketting Agent</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p class="title">
-              Total : 50
-            </p>
-            <p class="title">
-              Verified : 50
-            </p>
-            <p class="title">
-              Unverified : 50
-            </p>
-          </mat-card-content>
-        </mat-card>
+
         <mat-card class="example-card two">
           <mat-card-header>
-            <mat-card-title> Delivery Boy</mat-card-title>
+            <mat-card-title> Restaurent</mat-card-title>
           </mat-card-header>
 
           <mat-card-content>
@@ -81,50 +66,12 @@
           </mat-card-content>
         </mat-card>
       </div>
-      <!-- <div class="d-flex">
-        <mat-card class="example-card three">
-          <mat-card-header>
-            <mat-card-title>New User</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-card-content>
-              <p class="title">
-                Total : 50
-              </p>
-              <p class="title">
-                Verified : 50
-              </p>
-              <p class="title">
-                Unverified : 50
-              </p>
-            </mat-card-content>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="example-card four">
-          <mat-card-header>
-            <mat-card-title>Restaurants</mat-card-title>
-          </mat-card-header>
 
-          <mat-card-content>
-            <mat-card-content>
-              <p class="title">
-                Total : 50
-              </p>
-              <p class="title">
-                Verified : 50
-              </p>
-              <p class="title">
-                Unverified : 50
-              </p>
-            </mat-card-content>
-          </mat-card-content>
-        </mat-card>
-      </div> -->
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <h4 class="list-label p20">User Listing</h4>
+      <h4 class="list-label p20">Restaurent Listing</h4>
       <mat-card class="second-part">
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Search by Name" type="text" [(ngModel)]="userFilter.employee_name" />

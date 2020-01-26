@@ -12,11 +12,11 @@ import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-restaurent',
+  templateUrl: './restaurent.component.html',
+  styleUrls: ['./restaurent.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class RestaurentComponent implements OnInit {
   userDetailsObj = [];
   dialogRefSubscription: Subscription;
   addNewUserRequestObject = {
@@ -155,21 +155,8 @@ getError(el) {
     }
   }
 
-setStep(index: number) {
-    this.step = index;
-  }
-
-nextStep() {
-    this.step++;
-  }
-
-prevStep() {
-    this.step--;
-  }
-
-onSubmit(post) {
+  onSubmit(post) {
     // this.post = post;
   }
-
 
 }

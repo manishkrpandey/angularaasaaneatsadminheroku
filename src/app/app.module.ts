@@ -28,6 +28,8 @@ import { LoginService } from './services/login/login.service';
 import { ApiService } from './services/api.service';
 import { DashboardService } from './services/dasboard/dashboard.service';
 import { AuthTokenService } from './services/authtoken.service';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { RestaurentComponent } from './components/restaurent/restaurent.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { AuthTokenService } from './services/authtoken.service';
     LogInComponent,
     LogInComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    ConfirmationDialogComponent,
+    RestaurentComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +53,10 @@ import { AuthTokenService } from './services/authtoken.service';
     HttpClientModule,
     FilterPipeModule
   ],
-  providers: [LoginService, ApiService, DashboardService,AuthTokenService],
+  providers: [LoginService, ApiService, DashboardService, AuthTokenService],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [ConfirmationDialogComponent]
 })
 
 export class AppModule { }

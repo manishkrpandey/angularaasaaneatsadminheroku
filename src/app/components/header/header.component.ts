@@ -13,8 +13,18 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
- logout(){
+
+ logout() {
   localStorage.setItem('user', null);
   this.router.navigate(['/login']);
  }
+
+ gotoRestaurent() {
+  this.router.navigate(['/restaurent']);
+ }
+
+ gotoDashboard(){
+  this.router.navigate(['/dashboard']);
+ }
+
 }

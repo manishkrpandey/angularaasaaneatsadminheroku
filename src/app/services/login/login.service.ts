@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError, retryWhen } from 'rxjs/operators';
 import { ApiService, } from 'src/app/services/api.service';
-import { environment } from './../../../environments/environment';
+import { environment as env } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   loading = false;
-  loginUrl = 'http://www.dealbytes.co.in/admin/login';
+  loginUrl = env.BASE_URL  + '/admin/login';
 
   constructor(private api: ApiService) {
 
