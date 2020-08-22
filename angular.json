@@ -22,7 +22,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/.well-known/pki-validation/E704E628BDDE881604830CE277A7518C.txt"
+              "src/.well-known/pki-validation/E704E628BDDE881604830CE277A7518C.txt",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -53,7 +54,9 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -84,7 +87,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/.well-known/pki-validation/E704E628BDDE881604830CE277A7518C.txt"
+              "src/.well-known/pki-validation/E704E628BDDE881604830CE277A7518C.txt",
+              "src/manifest.webmanifest"
 
             ],
             "styles": [

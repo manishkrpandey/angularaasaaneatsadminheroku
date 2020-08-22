@@ -30,6 +30,8 @@ import { DashboardService } from './services/dasboard/dashboard.service';
 import { AuthTokenService } from './services/authtoken.service';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { RestaurentComponent } from './components/restaurent/restaurent.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { RestaurentComponent } from './components/restaurent/restaurent.componen
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    FilterPipeModule
+    FilterPipeModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [LoginService, ApiService, DashboardService, AuthTokenService],
   bootstrap: [AppComponent],
