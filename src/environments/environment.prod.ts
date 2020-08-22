@@ -1,4 +1,4 @@
-const BASE_URL = 'http://www.dealbytes.co.in';
+const BASE_URL = 'https://www.dealbytes.co.in';
 export const environment = {
   production: true,
   BASE_URL,
