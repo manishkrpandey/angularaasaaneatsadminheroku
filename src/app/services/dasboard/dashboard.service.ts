@@ -13,12 +13,14 @@ export class DashboardService {
   loginUrl = env.BASE_URL + '/admin/registeremployee';
   getAllUserDetailsUrl = env.BASE_URL + '/admin/registeremployee';
   getEmployeeUrl = env.BASE_URL + '/employee/retrieve?id=1';
+  getAllRestaurentUrl = env.BASE_URL + '/restaurant/retrieveall';
 
   constructor(private api: ApiService) {
 
   }
 
   addNewUser(requestObj): any {
+    requestObj.remember_token = "new_token";
     return this.api.post(this.loginUrl, requestObj).pipe(
       tap(data => {
         this.loading = false;
@@ -28,6 +30,7 @@ export class DashboardService {
   }
 
   getAllUserDetails(requestObj) {
+    requestObj.remember_token = "new_token";
     return this.api.post(this.getAllUserDetailsUrl, requestObj).pipe(
       tap(data => {
         this.loading = false;
@@ -40,6 +43,15 @@ export class DashboardService {
     const headers = new HttpParams();
     headers.set('id', '1');
     return this.api.get(this.getEmployeeUrl);
+  }
+
+  getAllRestaurent(){
+    return this.api.get(this.getAllRestaurentUrl).pipe(
+      tap(data => {
+        this.loading = false;
+      }),
+      catchError(err => err)
+    );
   }
 
 }

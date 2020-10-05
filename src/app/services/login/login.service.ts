@@ -10,6 +10,7 @@ import { environment as env } from './../../../environments/environment';
 export class LoginService {
   loading = false;
   loginUrl = env.BASE_URL  + '/admin/login';
+  verifyOtpUrl = env.BASE_URL  + '/admin/verifyotp';
 
   constructor(private api: ApiService) {
 
@@ -17,6 +18,15 @@ export class LoginService {
 
   loginAction(requestObj): any {
     return this.api.post(this.loginUrl, requestObj).pipe(
+      tap(data => {
+        this.loading = false;
+      }),
+      catchError(err => err)
+    );
+  }
+
+  verifyOtp(requestObj): any {
+    return this.api.post(this.verifyOtpUrl, requestObj).pipe(
       tap(data => {
         this.loading = false;
       }),

@@ -53,9 +53,9 @@ getAllUserDetailsRequestObject =  {
   selected = 'option2';
   userFilter: any = { employee_name: '' };
   userLabel = [
-    {label: 'Name', icon: 'face', key: 'employee_name'},
+    {label: 'Name', icon: 'face', key: 'restaurant_name'},
    {label: 'Contact Number', icon: 'contact_phone', key: 'mobile_number'},
-   {label: 'Area', icon: 'house', key: ''},
+   {label: 'Area', icon: 'house', key: 'address'},
    {label: 'Email Add', icon: 'email', key: 'email_id'},
    {label: 'Team', icon: 'supervised_user_circle', key: ''}];
 
@@ -100,7 +100,7 @@ getAllUserDetailsRequestObject =  {
   }
 
   getAllUserDetails() {
-    this.dashboardService.getAllUserDetails(this.getAllUserDetailsRequestObject).subscribe(data => {
+    this.dashboardService.getAllRestaurent().subscribe(data => {
       if (data && data.status === 'success') {
         this.userDetailsObj = data.data;
       } else {

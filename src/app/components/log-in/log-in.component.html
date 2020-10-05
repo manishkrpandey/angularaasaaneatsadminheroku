@@ -4,7 +4,7 @@
       <mat-card-title>Log In</mat-card-title>
     </mat-card-header>
 
-    <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="example-form">
+    <form [formGroup]="authForm" (ngSubmit)="submitForm()" class="example-form" *ngIf="!isRequestedOTP">
 
       <mat-card-content>
         <mat-form-field class="example-full-width">
@@ -13,8 +13,8 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" formControlName="email" >
-          <mat-error *ngIf="authForm.controls.email.invalid"> This is required Field!! </mat-error>
+          <input matInput placeholder="Mobile Number" formControlName="mNumber" >
+          <mat-error *ngIf="authForm.controls.mNumber.invalid"> This is required Field!! </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -32,8 +32,22 @@
 
       </mat-card-content>
 
-      <button mat-stroked-button color="accent" class="btn-block" [disabled]="this.authForm.touched && this.authForm.invalid">Login</button>
+
+
+      <button mat-stroked-button color="accent" class="btn-block" [disabled]="this.authForm.touched && this.authForm.invalid">Request OTP</button>
 
     </form>
+
+      <form [formGroup]="authOTPForm" (ngSubmit)="submitOTPForm()" class="example-form"  *ngIf="isRequestedOTP">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="OTP" formControlName="otp" >
+            <mat-error *ngIf="authOTPForm.controls.otp.invalid">This is required Field!!</mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block" [disabled]="this.authOTPForm.touched && this.authOTPForm.invalid">Submit OTP</button>
+      </form>
+
+
   </mat-card>
 </div>

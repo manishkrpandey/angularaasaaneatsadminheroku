@@ -18,14 +18,21 @@ export class LogInComponent implements OnInit {
   selected: any = [];
   Roles: any = ['Admin', 'Agent'];
   authForm: FormGroup;
+  authOTPForm: FormGroup;
   loginRequestObj = {
     user_name: '',
     password: ''
 };
+otpReqObject = {
+  otp:'',
+  mobile_number:'',
+  remember_token:''
+}
 userState: any = {
   name: '',
   token: ''
 };
+isRequestedOTP:any = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -35,9 +42,12 @@ userState: any = {
       ) {
     this.authForm = this.fb.group({
       userName: ['', Validators.required],
-      email: [null, [Validators.required, Validators.email]],
+      mNumber: [null, [Validators.required]],
       password: ['', Validators.required],
       userType: ['', Validators.required]
+    });
+    this.authOTPForm = this.fb.group({
+      otp: ['', Validators.required],
     });
   }
 
@@ -46,18 +56,32 @@ userState: any = {
       this.loginRequestObj.user_name = this.authForm.get('userName').value;
       this.loginRequestObj.password = this.authForm.get('password').value;
       this.loginService.loginAction(this.loginRequestObj).subscribe(data => {
-        if (data && data.status && data.data && data.data.remember_token ) {
-          if (data.data.remember_token) {
-            this.userState.name = this.loginRequestObj.user_name;
-            this.userState.token = data.data.remember_token;
-            this.tokenService.setToken(this.userState);
-            this.router.navigate(['/dashboard']);
-          } else {
-
-            localStorage.setItem('user', null);
-          }
+        if (data && data.status && data.data && data.data.otp ) {
+          this.snackBar.open('OTP is ' + data.data.otp, 'Ok', {
+            duration: 5000,
+          });
+          this.isRequestedOTP =  true;
         } else {
           this.snackBar.open('Username/Password Error', 'Ok', {
+            duration: 5000,
+          });
+        }
+      });
+    }
+  }
+
+
+  submitOTPForm() {
+    if (this.authOTPForm.invalid === false) {
+      this.otpReqObject.otp = this.authOTPForm.get('otp').value;
+      this.otpReqObject.mobile_number = this.authForm.get('mNumber').value;
+      this.otpReqObject.remember_token = "new_token",
+      this.loginService.verifyOtp(this.otpReqObject).subscribe(data => {
+        if (data && data.status && data.data && data.data ) {
+          this.tokenService.setToken('token');
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.snackBar.open('OTP Error', 'Ok', {
             duration: 5000,
           });
         }
